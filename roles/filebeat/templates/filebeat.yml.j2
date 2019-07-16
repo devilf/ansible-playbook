@@ -1,0 +1,23 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /export/data/logs/info/*.log
+  tags: ["{{ log_tag }}"]
+  exclude_files: ['.gz$','.zip$','.*.[0-9-]{1,}.log$']
+  fields:
+    server_ip: "{{ ansible_default_ipv4.address }}"
+  fields_under_root: true
+  tail_files: true
+
+processors:
+- drop_fields:
+    fields: ["prospector","source","input", "beat", "offset","tags","host"]
+
+output.redis:
+  hosts: ["{{ redis_host }}:{{ redis_port }}"]
+  db: {{ redis_db | default(0) }}
+  timeout: {{ redis_timeout | default(30) }}
+  key: "{{ redis_key }}"
+
+

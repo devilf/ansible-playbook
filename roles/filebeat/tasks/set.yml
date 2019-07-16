@@ -1,0 +1,29 @@
+---
+- name: Copy filebeat yml
+  template:
+    src: filebeat.yml.j2
+    dest: "{{ filebeat_bin_dir }}/filebeat_to_redis.yml"
+    owner: admin
+    group: admin
+    #remote_src: True
+  become: true
+
+- name: Set hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "172.27.10.79 redis.fgt.com"
+  become: true
+
+- name: Copy filebeat service
+  template:
+    src: filebeat.service.j2
+    dest: /usr/lib/systemd/system/filebeat.service
+  become: true
+
+- name: Start filebeat
+  systemd:
+    name: filebeat
+    state: restarted
+    enabled: true
+    daemon_reload: yes
+  become: true

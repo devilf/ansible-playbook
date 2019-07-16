@@ -1,0 +1,14 @@
+[Unit]
+Description=filebeat server daemon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=admin
+Group=admin
+Environment="BEAT_CONFIG_OPTS=-c {{ filebeat_bin_dir }}/filebeat_to_redis.yml"
+ExecStart={{ filebeat_bin_dir }}/filebeat $BEAT_CONFIG_OPTS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

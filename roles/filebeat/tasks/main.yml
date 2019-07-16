@@ -1,0 +1,15 @@
+---
+- name: kill old filebeat
+  import_tasks: kill.yml
+
+- name: Create dir
+  import_tasks: create.yml
+
+- name: download filebeat
+  import_tasks: download.yml
+
+- name: Set filebeat
+  import_tasks: set.yml
+
+- name: clean filebeat package
+  import_tasks: clean.yml

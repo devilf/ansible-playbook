@@ -1,0 +1,24 @@
+---
+- name: Check untar dir
+  stat:
+    path: "{{ filebeat_download_dir }}/{{ filebeat_tar_file }}"
+  register: untar_dir
+
+- name: Check tar dir
+  stat:
+    path: "{{ fgt_server_dir }}/{{ filebeat_unarchive_dir }}"
+  register: tar_dir
+
+- name: Del tar file
+  command: "rm -rf {{ filebeat_tar_file }}"
+  args: 
+    chdir: "{{ filebeat_download_dir }}"
+  when: untar_dir.stat.exists == True
+  become: true
+
+- name: Del tar dir
+  shell: "rm -rf {{ filebeat_unarchive_dir }}"
+  args:
+    chdir: "{{ fgt_server_dir }}"
+  when: tar_dir.stat.exists == True
+  become: true

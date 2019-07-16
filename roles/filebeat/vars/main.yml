@@ -1,0 +1,14 @@
+filebeat_unarchive_dir: "filebeat-7.2.0-linux-x86_64"
+filebeat_tar_file: "{{ filebeat_unarchive_dir }}.tar.gz"
+filebeat_download_url: "https://artifacts.elastic.co/downloads/beats/filebeat/{{ filebeat_tar_file }}"
+filebeat_download_dir: "/export/tmp"
+
+fgt_server_dir: /export/servers
+filebeat_dir: filebeat7
+filebeat_bin_dir: "{{ fgt_server_dir }}/{{ filebeat_dir }}"
+filebeat_conf_dir: "{{ fgt_server_dir }}/{{ filebeat_dir }}"
+
+
+redis_host: redis.fgt.com
+redis_port: 9998
+

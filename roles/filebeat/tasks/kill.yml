@@ -1,0 +1,37 @@
+---
+- name: Check filebeat old dir
+  stat:
+    path: "{{ fgt_server_dir }}/filebeat"
+  register: old_dir
+
+- name: Check script file
+  stat:
+    path: /home/admin/kill.sh
+  register: script_file
+
+#- name: Cp script file
+#  copy:
+#    src: kill.sh
+#    dest: /home/admin
+#    owner: admin
+#    group: admin
+#    mode: a+x
+#  when: script_file.stat.exists == False
+#  become: true
+
+- name: excute script file
+  shell: "bash kill.sh"
+  args:
+    chdir: /home/admin
+  become: true
+
+- name: Check filebeat old dir
+  stat:
+    path: /export/servers/filebeat
+  register: old_dir
+
+- name: delete old filebeat
+  command: "rm -rf filebeat"
+  args:
+    chdir: /export/servers
+  when: old_dir.stat.exists == True

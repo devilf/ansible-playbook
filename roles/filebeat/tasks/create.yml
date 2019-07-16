@@ -1,0 +1,24 @@
+---
+- name: Check server dir
+  stat:
+    path: "{{ fgt_server_dir }}"
+  register: server_dir
+
+- name: Create dir
+  file:
+    path: "{{ filebeat_download_dir }}"
+    state: directory
+    mode: 0755
+  become: true
+
+- name: Create server dir
+  file:
+    path: "{{ fgt_server_dir }}"
+    state: directory
+    owner: admin
+    group: admin
+  when: server_dir.stat.exists == False
+  become: true
+
+
+

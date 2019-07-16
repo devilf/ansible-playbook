@@ -1,0 +1,49 @@
+---
+- name: Check filebeat tar file
+  stat:
+    path: "{{ filebeat_download_dir }}/{{ filebeat_tar_file }}"
+  register: filebeat_tar
+
+- name: Check filebeat dir
+  stat:
+    path: "{{ fgt_server_dir }}/{{ filebeat_dir }}"
+  register: fb_dir
+
+- name: Download tar file
+  get_url:
+    url: "{{ filebeat_download_url }}"
+    dest: "{{ filebeat_download_dir }}"
+    mode: 0755
+  when: filebeat_tar.stat.exists == False
+  become: true
+
+- name: Unarchive tar file
+  unarchive:
+    src: "{{ filebeat_download_dir }}/{{ filebeat_tar_file }}"
+    dest: "{{ fgt_server_dir }}"
+    owner: admin
+    group: admin
+    remote_src: True
+  become: true
+
+- name: Mv unarchive dir
+  shell: mv "{{ filebeat_unarchive_dir }}" "{{ filebeat_dir }}"
+  args:
+    chdir: "{{ fgt_server_dir }}"
+  when: fb_dir.stat.exists == False
+  become: true
+
+- name: Change mode
+  shell: "chown -R admin.admin {{ fgt_server_dir }}/{{ filebeat_dir }}"
+  become: true
+
+- name: Create filebeat unarchive dir
+  file:
+    path: "{{ filebeat_dir }}"
+    state: directory
+    owner: admin
+    group: admin
+  when: fb_dir.stat.exists == False
+  become: true
+
+
