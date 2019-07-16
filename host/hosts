@@ -1,23 +1,22 @@
-[yql]
-172.27.10.110 log_tag=yql-app redis_key=yql-app-key redis_db=0
-172.27.10.111 log_tag=yql-app-manage redis_key=yql-app-manage-key redis_db=1
-172.27.10.117 log_tag=yql-javarisk01 redis_key=yql-javarisk01-key redis_db=2
-172.27.10.118 log_tag=yql-javarisk02 redis_key=yql-javarisk02-key redis_db=3
-172.27.10.115 log_tag=yql-pyrisk01 redis_key=yql-pyrisk01-key redis_db=4
-172.27.10.116 log_tag=yql-pyrisk02 redis_key=yql-pyrisk02-key redis_db=5
-172.27.10.112 log_tag=yql-settlement redis_key=yql-settlement-key redis_db=6
-172.27.10.119 log_tag=yql-channel-manage redis_key=yql-channel-manage-key redis_db=7
-172.27.10.62 log_tag=yql-msg-center redis_key=yql-msg-center-key redis_db=8
+[test]
+172.27.10.110 log_tag=test-app redis_key=test-app-key redis_db=0
+172.27.10.111 log_tag=test-app-manage redis_key=test-app-manage-key redis_db=1
+172.27.10.117 log_tag=test-javarisk01 redis_key=test-javarisk01-key redis_db=2
+172.27.10.118 log_tag=test-javarisk02 redis_key=test-javarisk02-key redis_db=3
+172.27.10.115 log_tag=test-pyrisk01 redis_key=test-pyrisk01-key redis_db=4
+172.27.10.116 log_tag=test-pyrisk02 redis_key=test-pyrisk02-key redis_db=5
+172.27.10.112 log_tag=test-settlement redis_key=test-settlement-key redis_db=6
+172.27.10.119 log_tag=test-channel-manage redis_key=test-channel-manage-key redis_db=7
+172.27.10.62 log_tag=test-msg-center redis_key=test-msg-center-key redis_db=8
 
-[yqj]
-172.27.10.72 log_tag=yqj-app redis_key=yqj-app-key redis_db=9
-172.27.10.80 log_tag=yqj-app-manage redis_key=yqj-app-manage-key redis_db=10
-172.27.10.106 log_tag=yqj-javarisk01 redis_key=yqj-javarisk01-key redis_db=11
-172.27.10.107 log_tag=yqj-javarisk02 redis_key=yqj-javarisk02-key redis_db=12
-172.27.10.104 log_tag=yqj-pyrisk01 redis_key=yqj-pyrisk01-key redis_db=13
-172.27.10.105 log_tag=yqj-pyrisk02 redis_key=yqj-pyrisk02-key redis_db=14
-172.27.10.108 log_tag=yqj-channel-manage redis_key=yqj-channel-manage-key redis_db=15
+[dev]
+172.27.10.72 log_tag=dev-app redis_key=dev-app-key redis_db=9
+172.27.10.80 log_tag=dev-app-manage redis_key=dev-app-manage-key redis_db=10
+172.27.10.106 log_tag=dev-javarisk01 redis_key=dev-javarisk01-key redis_db=11
+172.27.10.107 log_tag=dev-javarisk02 redis_key=dev-javarisk02-key redis_db=12
+172.27.10.104 log_tag=dev-pyrisk01 redis_key=dev-pyrisk01-key redis_db=13
+172.27.10.105 log_tag=dev-pyrisk02 redis_key=dev-pyrisk02-key redis_db=14
+172.27.10.108 log_tag=dev-channel-manage redis_key=dev-channel-manage-key redis_db=15
 
 [all:vars]
 ansible_ssh_user=admin
-ansible_ssh_pass='6:fksj1793fjjr+-X'
